@@ -5,6 +5,7 @@ import sys
 import pyqrcode
 
 
+
 def create_qr_code():
     if len(Subject.get()) != 0:
         global qr, photo, photo_display
@@ -22,10 +23,9 @@ def create_qr_code():
 def showcode():
     if len(Subject.get()) != 0:
         root.geometry("900x600+200+50")
-        qr_Frame = Frame(root, bd=2, relief=RIDGE, bg='white')
+        
         qr_Frame.place(x=600, y=150, width=250, height=380)
-        qr_title = Label(qr_Frame, text="QR Code", font=(
-            "times new roman", 18), bg='#053246', fg='white').place(x=0, y=0, relwidth=1)
+        qr_title = Label(qr_Frame, text="QR Code", font=("times new roman", 18), bg='#053246', fg='white').place(x=0, y=0, relwidth=1)
 
         qr_code = Label(qr_Frame, bg='white', fg='white')
         qr_code.place(x=35, y=100, width=180, height=180)
@@ -39,7 +39,7 @@ def save_qr_code():
         os.makedirs(dir)
     try:
         if len(name.get()) != 0:
-            qrImage = qr.png(os.path.join(dir, name.get()+".png"), scale=9)
+            qrImage = qr.png(os.path.join(dir, name.get()+".png"), scale=15)
             msg = 'QR Saved Successfully!'
             lbl_msg.config(text=msg)
         else:
@@ -49,18 +49,21 @@ def save_qr_code():
 
 
 def clear_fields():
+    global qr
+    qr = None
     root.geometry("600x600+200+50")
     SubEntry.delete(0, 'end')
     FileNameEntry.delete(0, 'end')
-    lbl_msg.place_forget()
+    lbl_msg.config(text='')
     qr_Frame.place_forget()
+    
 
 
 if __name__ == "__main__":
     root = Tk()
     root.geometry("600x600+200+50")
     root.title("QR Generator | Developed by gpasxalis")
-    root.resizable(False, False)
+
 
     ################################################################ MAIN FRAME ################################################################
 
@@ -76,15 +79,12 @@ if __name__ == "__main__":
     Sub = Label(mainFrame, text="Enter text", font=(
         "times new roman", 14, 'bold'), bg='white').place(x=50, y=100)
     Subject = StringVar()
-    SubEntry = Entry(mainFrame, textvariable=Subject, font=(
-        "times new roman", 14, 'bold'), bg='lightyellow')
+    SubEntry = Entry(mainFrame, textvariable=Subject, font=("times new roman", 14, 'bold'), bg='lightyellow')
     SubEntry.place(x=200, y=100)
 
-    FileName = Label(mainFrame, text="Enter Filename", font=(
-        "times new roman", 14, 'bold'), bg='white').place(x=50, y=150)
+    FileName = Label(mainFrame, text="Enter Filename", font=("times new roman", 14, 'bold'), bg='white').place(x=50, y=150)
     name = StringVar()
-    FileNameEntry = Entry(mainFrame, textvariable=name, font=(
-        "times new roman", 14, 'bold'), bg='lightyellow')
+    FileNameEntry = Entry(mainFrame, textvariable=name, font=("times new roman", 14, 'bold'), bg='lightyellow')
     FileNameEntry.place(x=200, y=150)
 
     ############################################################### ENTRY FIELDS ###############################################################
@@ -102,6 +102,7 @@ if __name__ == "__main__":
 
     ################################################################# QR FIELD ##################################################################
 
+    qr_Frame = Frame(root, bd=2, relief=RIDGE, bg='white')
 
     ################################################################# QR FIELD ##################################################################
 
