@@ -20,9 +20,17 @@ def create_qr_code():
         pass
 
 def showcode():
-    qr_code = Label(qr_Frame, bg='white', fg='white')
-    qr_code.place(x=35, y=100, width=180, height=180)
-    qr_code.config(image=photo_display)
+    if len(Subject.get()) != 0:
+        root.geometry("900x600+200+50")
+        qr_Frame = Frame(root, bd=2, relief=RIDGE, bg='white')
+        qr_Frame.place(x=600, y=150, width=250, height=380)
+        qr_title = Label(qr_Frame, text="QR Code", font=(
+            "times new roman", 18), bg='#053246', fg='white').place(x=0, y=0, relwidth=1)
+
+        qr_code = Label(qr_Frame, bg='white', fg='white')
+        qr_code.place(x=35, y=100, width=180, height=180)
+        qr_code.config(image=photo_display)
+
 
 
 def save_qr_code():
@@ -41,16 +49,16 @@ def save_qr_code():
 
 
 def clear_fields():
+    root.geometry("600x600+200+50")
     SubEntry.delete(0, 'end')
     FileNameEntry.delete(0, 'end')
-    qr_code = Label(qr_Frame, text='No QR\nAvailable', font=("times new roman", 15), bg='#053246', fg='white')
-    qr_code.place(x=35, y=100, width=180, height=180)
-    lbl_msg.config(text='')
+    lbl_msg.place_forget()
+    qr_Frame.place_forget()
 
 
 if __name__ == "__main__":
     root = Tk()
-    root.geometry("900x600+200+50")
+    root.geometry("600x600+200+50")
     root.title("QR Generator | Developed by gpasxalis")
     root.resizable(False, False)
 
@@ -94,12 +102,6 @@ if __name__ == "__main__":
 
     ################################################################# QR FIELD ##################################################################
 
-    qr_Frame = Frame(root, bd=2, relief=RIDGE, bg='white')
-    qr_Frame.place(x=600, y=150, width=250, height=380)
-    qr_title = Label(qr_Frame, text="QR Code", font=("times new roman", 18), bg='#053246', fg='white').place(x=0, y=0, relwidth=1)
-
-    qr_code = Label(qr_Frame, text='No QR\nAvailable', font=("times new roman", 15), bg='#053246', fg='white')
-    qr_code.place(x=35, y=100, width=180, height=180)
 
     ################################################################# QR FIELD ##################################################################
 
