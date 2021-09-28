@@ -1,3 +1,5 @@
+<img src'https://raw.githubusercontent.com/gpasxalis/images/main/python.png?token=ACUHQOLIKVMJBBOTWXBPGIDBLTHKO'>
+
 # QR-code-Generator
 Python QR code Generator
 
