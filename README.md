@@ -1,4 +1,4 @@
-<img src='https://raw.githubusercontent.com/gpasxalis/images/main/python.png?token=ACUHQOLIKVMJBBOTWXBPGIDBLTHKO' width=107 height=32>
+<img src='https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white'>
 
 # QR Code Generator
 Python QR code Generator
